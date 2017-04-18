@@ -1,0 +1,138 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>视频场景预览</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/de/prismplayer/1.4.8/skins/default/index.css" />
+    <script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.4.9/prism-h5-min.js"></script>
+</head>
+
+<body>
+
+
+
+    <div class="videostart" id="videostart" style="z-index: 1;width:100%;height:100%;">
+        <img style="width:100%;height:100%;" src="http://swa.dgshare.cn/signin/img/welcome.jpg">
+    </div>
+    <img src="img/like.png" id="like" class="checked">
+    <div style="width:100%;height:100%;display:none;" id="video">
+        <div id="J_prismPlayer" class="prism-player"></div>
+        <div class="video-wrapper js-video-wrapper">
+            <div class="video-responsive">
+                <video class="video js-video" id="video" webkit-playsinline muted>
+                    <source src="http://swa.dgshare.cn/signin/media/index2.mp4" type="video/mp4">
+                </video>
+                <canvas class="canvas js-canvas"></canvas>
+                <div class="video-timeline js-timeline">
+                    <div class="video-timeline-passed js-timeline-passed">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="videoend" style="z-index: 1;display: none;width:100%;height:100%;">
+        <img style=" width:100%;height:100%;" src="http://swa.dgshare.cn/signin/img/welcome.jpg">
+    </div>
+
+
+</body>
+<script type="text/javascript" src="http://swa.dgshare.cn/Scripts/jquery-1.9.1.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/canvas-video-player.js"></script>
+<script type="text/javascript" src="js/hammer.min.js"></script>
+<script type="text/javascript" src="js/jquery.hammer.js"></script>
+<!-- <script type="text/javascript" src="js/canvas-video-player.js"></script> -->
+<script type="text/javascript">
+    //获取json数据
+    //填充到html
+    var height = $(window).height();
+
+
+
+    var ld, vd = 0;
+    var isIphone = navigator.userAgent.toLowerCase().indexOf('iphone') >= 0;
+    if (isIphone) {
+// alert(1)
+        var canvasVideo = new CanvasVideoPlayer({
+            videoSelector: '.js-video',
+            canvasSelector: '.js-canvas',
+            hideVideo: true,
+            audio: true,
+        });
+    } else {
+alert(2)
+        $('canvas').hide();
+        $('.video').remove();
+        // $('.video-responsive')
+        //     .append('<video src="http://swa.dgshare.cn/signin/media/index2.mp4" id="video" width="'
+        //     + $("html").width() + '" height="' + $("html").height() +
+        //     '" style="background:transparent;"></video>');
+        var player = new prismplayer({
+            id: "J_prismPlayer", // 容器id
+            source: "http://cloud.video.taobao.com/play/u/2554695624/p/1/e/6/t/1/fv/102/28552077.mp4",         // 视频url 支持互联网可直接访问的视频地址
+            autoplay: true,      // 自动播放
+            width: "100%",       // 播放器宽度
+            height: "100%"      // 播放器高度
+        });
+        var clickDom = document.getElementById("videostart")
+        clickDom.addEventListener("click", function (e) {
+            $(".videostart").hide();
+            $("#video,#like").show();
+            player.play();
+        });
+        player.on("ended", function (e) {
+            $("#video,#like").remove();
+            $(".videoend").show();
+        });
+        $("#like").on("click", function () {
+            $("#like").css("width", "80px");
+
+        });
+        $('#video').get(0).load();
+        $('#video').get(0).addEventListener('canplaythrough', function () {
+
+        });
+        $('#video').on('ended', function () {
+            afterVideoFinish();
+            $('#video').remove();
+        });
+    }
+
+    $('#masker').hammer().on('panup', function (e) {
+        var y = e.gesture.distance;
+        if (y > 180) {
+            y = 180;
+        }
+        $('#masker>img').css({ y: -y });
+    });
+    $('#masker').on('touchend', function () {
+        $('#masker>img').transition({ y: 0 }, 300, function () {
+            $('#masker').fadeOut();
+
+        });
+        if (canvasVideo) {
+            canvasVideo.play();
+        } else {
+            $('#video').width($("html").width()).height($("html").height()).get(0).play();
+        }
+    });
+
+
+
+    document.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+    });
+
+    function afterVideoFinish() {
+        $(".page2").fadeIn().siblings().fadeOut();
+        $(".page2").on("click", function () {
+            $(this).fadeOut("fast", function () {
+                window.location.href = "map.html";
+            });
+        });
+    }
+</script>
+</html>
