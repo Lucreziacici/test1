@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>地图选择页</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!--主页面-->
+        <div class="page page1">
+            <div class="bg back"><img src="http://swa.dgshare.cn/signin/img/area_bg.jpg" width="100%" height="100%" class="bg"></div>
+            <div class="header">
+                <a href="#" class="rule_btn"><img src="http://swa.dgshare.cn/signin/img/rule_btn.png" height="45rem"></a>
+                <a href="#" class="share_btn"><img src="http://swa.dgshare.cn/signin/img/share_btn.png" height="45rem"></a>
+            </div>
+            <div class="content flex-row center">
+                <ul class="nav areaList">
+                    <li><a href="detail.html?id=0"><div class="area area0"></div></a></li>
+                    <li><a href="detail.html?id=1"><div class="area area1"></div></a></li>
+                    <li><a href="detail.html?id=2"><div class="area area2"></div></a></li>
+                    <li><a href="detail.html?id=3"><div class="area area3"></div></a></li>
+                    <li><a href="detail.html?id=4"><div class="area area4"></div></a></li>
+                    <li><a href="detail.html?id=5"><div class="area area5"></div></a></li>
+                    <li><a href="detail.html?id=6"><div class="area area6"></div></a></li>
+                    <li><a href="detail.html?id=7"><div class="area area7"></div></a></li>
+                    <li><a href="detail.html?id=8"><div class="area area8"></div></a></li>
+                    <li><a href="detail.html?id=9"><div class="area area9"></div></a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <a href="card.html"><img src="http://swa.dgshare.cn/signin/img/check.png" width="100%"></a>
+            </div>
+        </div>
+        <!--规则的提示框-->
+        <div class="alert" id="rule">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/rule_2.png" width="100%">
+                <a href="#" role="close" target="#rule" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--提示分享的提示框-->
+        <div class="alert" id="share" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/share.png" width="100%" height="100%" style="margin-top: -30%" />
+                <a href="#" role="close" target="#share" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="http://swa.dgshare.cn/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="http://swa.dgshare.cn/Scripts/prefixfree.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+
+        $.post("/Event/GetCustomerSignInfo", function (r) {
+            //console.log(r);
+            $.each(r.SignInfo, function (a, s) {
+                if (s == true) {
+                    $(".content li").eq(a).addClass("active");
+                }
+            });
+            // loading 消失，显示第一页
+            showFirstPage();
+        });
+
+        // 测试点亮
+        //$(".areaList a").on("click", function (e) {
+        //    e.preventDefault();
+        //    $(this).parents("li").toggleClass("active")
+        //    return false;
+        //});
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../Scripts/WeChat.js"></script>
+    <script>
+        WeChat("轻松玩转购物地，扫扫即可抽大奖", "http://sw.dgshare.cn/SignIn/img/eventIcon.jpg", "快来和我一起玩转购物地，一起抽取惊喜大奖吧！", "http://sw.dgshare.cn/Event/UserIndex");
+    </script>
+</body>
+</html>

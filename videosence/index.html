@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>视频场景编辑</title>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="http://g.alicdn.com/de/prismplayer/1.4.8/skins/default/index.css" />
+<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.4.10/prism-min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default navmysence" role="navigation">
+ <img class="VideoSencepreview" src="img/preview.png">
+</nav>
+<!-- 具体内容 -->
+<div class="VideoSenceall">
+  <!-- 手机 -->
+ <div class="VideoSencephone">
+   <div class="phone">
+ </div> 
+</div>
+<div class="VideoSenceset">
+<!-- 上传 -->
+  <div class="VideoSenceuploading1">
+  <span>未开始页面</span>
+  <div class="VideoSenceinput"></div>
+  <div class="VideoSenceinputpic">点击上传</div>
+  <input type="file" class="VideoSenceinputfile">
+  </div>
+  <div class="VideoSenceuploading1">
+  <span>结束页面</span>
+  <div class="VideoSenceinput"></div>
+  <div class="VideoSenceinputpic">点击上传</div>
+  <input type="file" class="VideoSenceinputfile">
+  </div>
+  <div class="VideoSenceinputaddress">
+     <span>视频地址</span>
+     <input class="address" type="text">
+  </div>
+  <div class="VideoSenceinputpraise">
+      <span>是否点赞</span>
+      <input type="radio" name="like" class="optionsRadios1" id="like"  value="是" >&nbsp&nbsp&nbsp是
+      <input type="radio" name="like" class="optionsRadios1"  id="nolike" value="否" >&nbsp&nbsp&nbsp否
+  </div>
+  <div class="VideoSenceinputbtn">
+    <button class="button btncancel">取消</button>
+    <button class="button btnsave">保存</button>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="http://swa.dgshare.cn/Scripts/jquery-1.9.1.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+
+  //    $("#optionsRadios1").click(function(){
+  //   var checked=$("#optionsRadios1").attr("checked");
+  //   console.log(checked)
+  //   if(checked=="checked"){
+  //     $("#optionsRadios1").attr("checked",false);
+  //   }else{
+  //     $("#optionsRadios1").attr("checked",true);
+  //   }
+
+  
+  // })
+$(".btnsave").click(function(){
+  $(".phone").children().remove();
+// var check=$("#optionsRadios1").attr("checked");
+var startimg=$("#inputPassword3").val();
+var endimg=$("#inputPassword4").val();
+var videourl=$("#inputEmail3").val();
+var checkresult=$('input:radio[name="like"]:checked').val();
+var checked;
+if(checkresult=="是"){
+  checked="checked";
+}else{
+  checked="none";
+}
+console.log(checked);
+     var m = $(Draw({
+        "video": {
+            startimg: ""+startimg+"",
+            videourl: ""+videourl+"",
+            endimg: ""+endimg+"",
+            checked:""+checked+""
+            // startimg:"http://swa.dgshare.cn/signin/img/welcome.jpg",
+            // videourl:"http://live.dgshare.cn/AppName/StreamName.m3u8",
+            // endimg:"http://swa.dgshare.cn/signin/img/welcome.jpg",
+            // checked:"checked"
+        }
+    })).prependTo(".phone");
+})
+        
+
+</script>
+</html>

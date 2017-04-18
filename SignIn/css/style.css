@@ -1,0 +1,541 @@
+﻿@charset "utf-8";
+.header {
+	width: 90%;
+	margin: 3% auto;
+    display: flex;
+    justify-content: center;
+}
+.header > :not(:first-child) {
+	margin-left: 1%;
+}
+.footer {
+	position: absolute;
+	bottom: 1.5%;
+	left: 5%;
+	width: 90%;
+	margin: auto;
+}
+.content {
+	position: absolute;
+	left: 10%;
+	top: 20%;
+	width: 80%;
+	height: 65%;
+	margin: auto;
+}
+
+.main {
+    overflow: hidden;
+	color: rgba(128,96,68,.7);
+}
+.areaList {
+	width: 100%;
+	height: 100%;
+	padding: 1% 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-wrap: wrap;
+    overflow-y: auto;
+}
+.areaList li {
+	position: relative;
+	width: 46%;
+	/*margin: 1%;*/
+}
+.areaList li:before {
+	content: "";
+	padding-top: 56%;
+	display: block;
+}
+.areaList .area {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url(http://swa.dgshare.cn/signin/img/area_choose_bg.png) 0 0 / 200% auto no-repeat;
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+	filter: gray;
+}
+.areaList .area.area0 {background-position: 100% 1%;}
+.areaList .area.area1 {background-position: 100% 12%;}
+.areaList .area.area2 {background-position: 100% 23%;}
+.areaList .area.area3 {background-position: 100% 34%;}
+.areaList .area.area4 {background-position: 100% 45%;}
+.areaList .area.area5 {background-position: 100% 56%;}
+.areaList .area.area6 {background-position: 100% 67%;}
+.areaList .area.area7 {background-position: 100% 78%;}
+.areaList .area.area8 {background-position: 100% 89%;}
+.areaList .area.area9 {background-position: 100% 100%;}
+.areaList .active .area {
+	-webkit-filter: none;
+	filter: none;
+}
+/*.areaList .area.area0 {background-position: 0 1%;}
+.areaList .area.area1 {background-position: 0 12%;}
+.areaList .area.area2 {background-position: 0 23%;}
+.areaList .area.area3 {background-position: 0 34%;}
+.areaList .area.area4 {background-position: 0 45%;}
+.areaList .area.area5 {background-position: 0 56%;}
+.areaList .area.area6 {background-position: 0 67%;}
+.areaList .area.area7 {background-position: 0 78%;}
+.areaList .area.area8 {background-position: 0 89%;}
+.areaList .area.area9 {background-position: 0 100%;}
+.areaList .active .area.area0 {background-position: 100% 1%;}
+.areaList .active .area.area1 {background-position: 100% 12%;}
+.areaList .active .area.area2 {background-position: 100% 23%;}
+.areaList .active .area.area3 {background-position: 100% 34%;}
+.areaList .active .area.area4 {background-position: 100% 45%;}
+.areaList .active .area.area5 {background-position: 100% 56%;}
+.areaList .active .area.area6 {background-position: 100% 67%;}
+.areaList .active .area.area7 {background-position: 100% 78%;}
+.areaList .active .area.area8 {background-position: 100% 89%;}
+.areaList .active .area.area9 {background-position: 100% 100%;}*/
+/*.area .view {
+	width: 60%;
+    height: 106%;
+    margin-top: -6%;
+	display: none;
+	background: url(../img/area_choose.png) 1% 0 / 100% auto no-repeat;
+}
+.active .area0 .view {background-position: 2px 0;}
+.active .area1 .view {background-position: 2px 11%;}
+.active .area2 .view {background-position: 2px 22.2%;}
+.active .area3 .view {background-position: 2px 33.2%;}
+.active .area4 .view {background-position: 2px 44.5%;}
+.active .area5 .view {background-position: 2px 55.5%;}
+.active .area6 .view {background-position: 2px 67%;}
+.active .area7 .view {background-position: 2px 78%;}
+.active .area8 .view {background-position: 2px 89%;}
+.active .area9 .view {background-position: 2px 100%;}
+.active .area {
+    display: block;
+}
+.areaList .active .view {
+	display: block;
+}*/
+
+
+#card {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+    justify-content: space-around;
+}
+#card .footer {
+	position: static;
+}
+.user {
+	width: 90%;
+	margin: auto;
+	font-size: 1.7rem;
+}
+.id {
+	padding: 1%;
+    justify-content: space-around;
+}
+.info {
+	padding: 5%;
+	align-items: center;
+	border-top: 1px dashed;
+	border-bottom: 1px dashed;
+}
+.photo {
+	position: relative;
+	width: 40%;
+	margin-right: 5%;
+}
+.photo:before {
+	content: "";
+	padding-top: 100%;
+	display: block;
+}
+.photo > * {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255,255,255,.7);
+}
+.uesr-info {
+	line-height: 2;
+}
+.area-active {
+	width: 90%;
+	margin: auto;
+	padding: 0 1%;
+	flex-wrap: wrap;
+    justify-content: center;
+}
+.area-active li {
+	position: relative;
+	width: 20%;
+	/*margin: 1%;
+	background: #fff;
+	border: 1px solid #8d744d;*/
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+	filter: gray;
+}
+.area-active li.active {
+	-webkit-filter: none;
+	filter: none;
+}
+.area-active li:before {
+	content: "";
+	padding-top: 100%;
+	display: block;
+}
+.area-active .view {
+	position: absolute;
+	/*top: -10%;*/
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: url(http://swa.dgshare.cn/signin/img/area_choose.png) 0 0 / 200% auto no-repeat;
+}
+.area-active li:nth-child(1) .view {background-position: 0 0;}
+.area-active li:nth-child(2) .view {background-position: 100% 0;}
+.area-active li:nth-child(3) .view {background-position: 0 25.3%;}
+.area-active li:nth-child(4) .view {background-position: 100% 25.4%;}
+.area-active li:nth-child(5) .view {background-position: 0 50.5%;}
+.area-active li:nth-child(6) .view {background-position: 100% 51%;}
+.area-active li:nth-child(7) .view {background-position: 0 76%;}
+.area-active li:nth-child(8) .view {background-position: 100% 76%;}
+.area-active li:nth-child(9) .view {background-position: 0 101%;}
+.area-active li:nth-child(10) .view {background-position: 100% 101%;}
+.guagua {
+	position: relative;
+	height: 10%;
+	width: 90%;
+	margin: auto;
+	color: #737373;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+}
+.guagua > * {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.guagua .prize {
+	z-index: 1;
+	display: none;
+    text-align: center;
+}
+.prize span {
+    display: block;
+    padding-bottom: .3em;
+}
+.prize a {
+    padding: .2em 1em;
+    color: #ddd;
+    background: rgba(128,96,68,.7);
+    margin: .3em .1em 0;
+    display: inline-block;
+    border-radius: .3em;
+    display: none;
+}
+.guagua .cover {
+	pointer-events: none;
+	z-index: 2;
+	cursor: pointer;
+	border-radius: .5rem;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    border: 1px solid #ccc;
+}
+.guagua .text {
+	z-index: 3;
+}
+.guagua .text .no {
+	display: none;
+}
+.guagua.ok .cover {
+	pointer-events: auto;
+    opacity: 1;
+}
+.guagua.ok .prize {
+	display: flex;
+}
+.guagua.ok .no {
+	display: block;
+}
+.guagua.ok .yes {
+	display: none;
+}
+
+
+.areaNav {
+    width: 100%;
+	height: 100%;
+	display: flex;
+}
+.area {
+    width: 100%;
+	height: 100%;
+	flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.preview {
+	position: relative;
+	padding: 1% 0;
+	width: 90%;
+	margin: 0 auto;
+	border-top: 1px dashed;
+	border-bottom: 1px dashed;
+}
+.picture {
+	position: relative;
+	margin: 0 -6%;
+}
+@media (max-height: 520px) {
+	.preview {width: 70%}
+}
+/*.picture:before {
+	content: "";
+	padding-top: 100%;
+	display: block;
+}*/
+.mark {
+	position: absolute;
+	width: 30vw;
+    height: 30vw;
+    transform: scale(2);
+    opacity: 0;
+}
+/*.mark:before {
+	content: "";
+	padding-top: 100%;
+	display: block;
+}*/
+.area0 .mark {
+	left: 0;
+	bottom: 10%;
+    height: 30vw;
+    background: url(http://swa.dgshare.cn/signin/img/mark/1.png) center / auto 100% no-repeat;
+}
+.area1 .mark {
+	right: 4%;
+	top: 8%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/2.png) center / cover no-repeat;
+}
+.area2 .mark {
+	left: 3%;
+	bottom: 2%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/3.png) center / cover no-repeat;
+}
+.area3 .mark {
+	right: 10%;
+	bottom: 9%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/4.png) center / cover no-repeat;
+}
+.area4 .mark {
+	right: 8%;
+	bottom: 19%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/5.png) center / cover no-repeat;
+}
+.area5 .mark {
+	left: 12%;
+	bottom: 8%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/6.png) center / cover no-repeat;
+}
+.area6 .mark {
+	right: 0;
+	bottom: -2vw;
+    width: 40vw;
+    background: url(http://swa.dgshare.cn/signin/img/mark/7.png) center / 100% auto no-repeat;
+}
+.area7 .mark {
+	left: 7%;
+	bottom: 16%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/8.png) center / cover no-repeat;
+}
+.area8 .mark {
+	right: 5%;
+	bottom: 17%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/9.png) center / cover no-repeat;
+}
+.area9 .mark {
+	right: 14%;
+	bottom: 5%;
+    background: url(http://swa.dgshare.cn/signin/img/mark/10.png) center / cover no-repeat;
+}
+.main.markAnim {
+	animation: shake .1s .1s;
+}
+.mark.markAnim {
+	animation: mark .1s .1s both;
+}
+.mark.ok {
+    opacity: 1;
+    transform: scale(1);
+}
+@keyframes mark {
+	0% {transform: scale(2); opacity:0;}
+	100% {transform: scale(1); opacity:1;}
+}
+@keyframes shake {
+	0%, 50% {transform: scale(1);}
+	100% {transform: scale(0.99);}
+}
+.preview + .title {
+	width: 100%;
+	text-align: center;
+	margin: 2% 0;
+	letter-spacing: .1em;
+	font-size: 1.6rem;
+    height: 2rem;
+    line-height: 2rem;
+}
+.activity {
+	width: 100%;
+	overflow: hidden;
+	background: rgba(221,189,157,.7);
+    height: 20%;
+    flex-shrink: 0;
+}
+.activity ul {
+	padding: 5% 0 2%;
+    display: flex;
+}
+.activity li {
+	position: relative;
+	width: 60vw;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+}
+.activity li.swiper-slide-active {
+    z-index: 2;
+	transform: scale(1.1) translateY(-3%);
+    box-shadow: 0 5px 10px rgba(0,0,0,.3);
+}
+.activity li:before {
+	content: "";
+	padding-top: 44%;
+	display: block;
+}
+.direct {
+	width: 80%;
+	margin: 3% auto;
+	display: flex;
+	text-align: center;
+	font-weight: bolder;
+	font-size: 2rem;
+	align-items: center;
+    justify-content: space-around;
+}
+.direct .prev:before, .direct .next:before {
+	content: "";
+	padding-top: 100%;
+	display: block;
+}
+.direct .prev, .direct .next {
+	width: 10%;
+	background: url(http://swa.dgshare.cn/signin/img/direct.png) center / auto 120% no-repeat;
+}
+.direct .prev {background-position: left center}
+.direct .next {background-position: right center}
+/*.special-bg > div {
+    background: url(../img/alert_bg.png) 50% 70% / 100% auto no-repeat;
+}
+.special-bg:before {
+    content: "";
+    padding-top: 50%;
+    display: block;
+    background: url(../img/alert_bg.png) top left / 100% auto no-repeat;
+}
+.special-bg:after {
+    content: "";
+    padding-top: 25%;
+    display: block;
+    background: url(../img/alert_bg.png) bottom left / 100% auto no-repeat;
+}*/
+#bind .form-group {
+    width: 70%;
+    margin: 0 auto 1rem;
+    display: flex;
+    text-align: center;
+}
+.bind-bg {
+    padding: 50% 0 20%;
+    background: url(http://swa.dgshare.cn/signin/img/alert_bg.png) 50% 70% / 100% auto no-repeat;
+}
+#bind .form-group:last-child {
+    margin: 0 auto;
+}
+#bind input {
+    width: 100%;
+    padding: .8em;
+    border: 2px solid #d2d2d2;
+    border-radius: .4em;
+    flex-grow: 1;
+    min-height: 2em;
+}
+#bind .btn {
+    flex-shrink: 0;
+    padding: .8em;
+    border: 2px solid #d2d2d2;
+    border-radius: .4em;
+    margin-left: .5rem;
+    background: #dcdcdc;
+    color: #595959;
+}
+#getCode {
+    width: 5.5em;
+}
+#share .special-bg div {
+    padding: 10% 0;
+    font-size: 2rem;
+    line-height: 2em;
+    letter-spacing: .1em;
+}
+.idCode {
+    margin-left: 1em;
+}
+.idCode > span {
+    /*width: 6.5em;
+    display: inline-block;*/
+}
+
+
+.loading {
+	width: 100%;
+	display: flex;
+	height: 3em;
+	justify-content: center;
+	align-items: center;
+    margin-top: 3em;
+}
+.loading span {
+	width: 4px;
+	height: 50%;
+	display: inline-block;
+	background: #fff;
+	margin: 0 3px;
+	border-radius: 5px;
+	-webkit-animation: loading .5s linear infinite;
+	animation: loading .5s linear infinite;
+}
+.loading span:nth-child(2) {animation-delay: .1s;-webkit-animation-delay: .1s;}
+.loading span:nth-child(3) {animation-delay: .2s;-webkit-animation-delay: .2s;}
+.loading span:nth-child(4) {animation-delay: .3s;-webkit-animation-delay: .3s;}
+@-webkit-keyframes loading {
+	50% {transform: scaleY(1.8)}
+}
+@keyframes loading {
+	50% {transform: scaleY(1.8)}
+}

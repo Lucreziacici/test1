@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>活动签章页</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header, .direct {
+            flex-shrink: 0;
+        }
+
+        .areas {
+            flex-grow: 1;
+            display: flex;
+        }
+
+        .areaNav {
+            height: auto;
+        }
+
+        .area9 .title {
+            font-size: 1.4rem;
+        }
+
+        .activity {
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!--loading-->
+        <div class="alert" id="loading">
+            <div class="loading"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <!--主页面-->
+        <div class="page page1">
+            <div class="bg back"><img src="http://swa.dgshare.cn/signin/img/card_bg.jpg" width="100%" height="100%"></div>
+            <div class="header">
+                <a href="card.html" class="share_btn"><img src="http://swa.dgshare.cn/signin/img/card_btn-sm.png" height="45rem"></a>
+                <a href="map.html" class="share_btn"><img src="http://swa.dgshare.cn/signin/img/map_btn-sm.png" height="45rem"></a>
+                <a href="#" class="scanQRCode"><img src="http://swa.dgshare.cn/signin/img/scan_btn_sm.png" height="45rem"></a>
+                <a href="#" class="rule_btn"><img src="http://swa.dgshare.cn/signin/img/rule_btn_sm.png" height="45rem"></a>
+                <a href="#" class="share_btn"><img src="http://swa.dgshare.cn/signin/img/share_btn_sm.png" height="45rem"></a>
+            </div>
+            <div class="areas">
+                <ul class="nav areaNav">
+                    <li class="area template">
+                        <div class="preview">
+                            <div class="picture">
+                                <img src="http://swa.dgshare.cn/signin/img/pic/1.jpg" width="100%" height="100%">
+                            </div>
+                            <div class="mark"></div>
+                        </div>
+                        <div class="title">普通</div>
+                        <div class="activity">
+                            <ul class="nav actNav"></ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="direct">
+                <div class="prev"></div>
+                <div class="text">1</div>
+                <div class="next"></div>
+            </div>
+        </div>
+        <!--游戏规则的提示框-->
+        <div class="alert" id="rule" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/rule_2.png" width="100%">
+                <a href="#" role="close" target="#rule" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--提示分享的提示框-->
+        <div class="alert" id="share" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/share.png" width="100%" height="100%" style="margin-top: -30%" />
+                <a href="#" role="close" target="#share" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--已完成签到的提示框-->
+        <div class="alert" id="hasSign" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/ok_alert.png" width="100%" height="100%" style="margin-top: -30%" />
+                <img src="http://swa.dgshare.cn/signin/img/ok_btn.png" width="60%" class="ok" role="close" target="#hasSign" /><!--按钮-好-->
+                <a href="#" role="close" target="#hasSign" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--已获得星星的提示框-->
+        <div class="alert" id="getStar" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/get_alert.png" width="100%" height="100%" style="margin-top: -30%" />
+                <img src="http://swa.dgshare.cn/signin/img/nore_scan_btn.png" width="30%" class="more-scan-btn scanQRCode" /><!--按钮-继续扫-->
+                <a href="/CRM/MyChests"><img src="http://swa.dgshare.cn/signin/img/view_star_btn.png" width="30%" class="view-star-btn" /></a><!--按钮-看星星-->
+                <a href="#" role="close" target="#getStar" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--星星已达上限的提示框-->
+        <div class="alert" id="enough" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/up_alert.png" width="100%" height="100%" style="margin-top: -30%" />
+                <img src="http://swa.dgshare.cn/signin/img/ok_btn.png" role="close" width="60%" class="ok" role="close" target="#enough" /><!--按钮-好-->
+                <a href="#" role="close" target="#enough" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="http://swa.dgshare.cn/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="http://swa.dgshare.cn/Scripts/prefixfree.min.js"></script>
+    <script src="http://swa.dgshare.cn/Scripts/swiper.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        var stateObj = { times: "first" };
+        //console.log(stateObj);
+        if (GetQueryString("Stars") && !GetQueryString("first")) {
+            history.pushState(stateObj, "第二次进入获得星星", window.location.href + "&first=false");
+            $("#getStar").show(0);
+        }
+        if (GetQueryString("Full") && !GetQueryString("first")) {
+            history.pushState(stateObj, "星星积满了", window.location.href + "&first=false");
+            $("#enough").show(0);
+        }
+        if (GetQueryString("Sign") && !GetQueryString("first")) {
+            history.pushState(stateObj, "第一次进来，提示已完成签到", window.location.href + "&first=false");
+            $("#hasSign").show(0);
+        }
+
+        var swiper = null; // 存储整体轮播元素
+        var pages = []; // 存储页面数据，用于 initPage(pages)
+        var names = ["浦东新区", "静安区·普陀区", "徐汇区·闵行区", "长宁区·青浦区", "黄浦区", "杨浦区·虹口区", "奕欧来上海购物村", "光明食品集团·全家便利店·多样屋", "百联集团", "苏宁易购·国美电器·永乐生活电器·东方购物"];
+        $.each(names, function (i, name) {
+            pages.push({
+                name: name,
+                preview: "img/pic/" + (i + 1) + ".jpg",
+                activity: [],
+                marked: false
+            });
+        });
+
+        // 活动
+        $.post("/Event/GetEventsList", function (r) {
+            // Todo:活动添加
+            var $template = $(".template");
+            var $clone = $template.clone(true).removeClass("template");
+            $.each(r.Event, function (i, page) {
+                //console.log(page);
+                var $area = $clone.clone(true);
+                $area.addClass("area" + i);
+                $area.find(".title").text(names[i]);
+                $area.find(".preview .picture img").attr("src", "http://swa.dgshare.cn/signin/img/pic/" + (i + 1) + ".jpg");
+                $area.find(".activity").addClass("activity" + i);
+                if (r.SignInfo[i]) $area.find(".mark").addClass("ok");
+                $area.find(".direct .text").text((i + 1) + " - 10");
+                if (i == 8) {
+                    var arr = [
+                        { url: "http://promotion.bl.com/nc/1_3000_10398_18227.html?cm_mmc=guj-_-yr-_-0-_-0", img: "http://swa.dgshare.cn/Uploads/2016/9/7/a3578f68-eb7d-445d-83e7-1868a9230eda.jpg" },
+                        { url: "http://promotion.bl.com/nc/1_3000_10624_18652.html?cm_mmc=guj-_-bsl-_-0-_-0", img: "http://swa.dgshare.cn/Uploads/2016/9/7/67124384-d868-4889-b04c-30a5c5878111.jpg" },
+                        { url: "http://promotion.bl.com/nc/1_3000_10625_18653.html?cm_mmc=guj-_-C-_-0-_-0", img: "http://swa.dgshare.cn/Uploads/2016/9/7/7d4f46c3-0829-4cfa-ace2-a14d1e1f630e.jpg" },
+                        { url: "http://promotion.bl.com/nc/1_3000_10381_18220.html?cm_mmc=guj-_-zc-_-0-_-0", img: "http://swa.dgshare.cn/Uploads/2016/9/7/1903c6f4-361f-46ce-9aaf-09d17ca1fdb6.jpg" },
+                        { url: "http://promotion.bl.com/nc/1_3000_9856_17563.html?cm_mmc=guj-_-zx-_-0-_-0", img: "http://swa.dgshare.cn/Uploads/2016/9/7/c9a57690-4f4f-4e75-8b22-e2af0c7963b1.jpg" },
+                        { url: "http://promotion.bl.com/nc/1_3000_10558_18566.html?from=singlemessage&isappinstalled=0", img: "http://swa.dgshare.cn/Uploads/2016/9/6/e2a9da81-39a8-4eca-92a4-196918438b19.jpg" },
+                        { url: "http://sw.dgshare.cn/CMS/Detail?type=0&id=438", img: "http://swa.dgshare.cn/Uploads/2016/9/6/e053d4ae-6909-4451-adb0-17d95939e116.jpg" },
+                        { url: "http://sw.dgshare.cn/CMS/Detail?type=0&id=439", img: "http://swa.dgshare.cn/Uploads/2016/9/6/4dca6e5c-fd3d-4e45-8393-31c975a09d78.jpg" },
+                        { url: "http://sw.dgshare.cn/CMS/Detail?type=0&id=441", img: "http://swa.dgshare.cn/Uploads/2016/9/6/b54a93d5-d716-49b0-af82-bef6d2358127.jpg" },
+                        { url: "http://sw.dgshare.cn/CMS/Detail?type=0&id=432", img: "http://swa.dgshare.cn/Uploads/2016/9/6/3bdbd625-4581-435a-84b2-d767d4ca645c.jpg" },
+                        { url: "http://sw.dgshare.cn/CMS/Detail?type=0&id=437", img: "http://swa.dgshare.cn/Uploads/2016/9/6/5673c3cf-217e-47d3-9044-16b385230823.JPG" }, ]
+                    for (var a=0; a<arr.length; a++) {
+                        var aa = arr[a];
+                        $area.find(".activity ul").append("<li class=\"act\"><a href=\"" + aa.url + "\"><img src=\"" + aa.img + "\" width=\"100%\" height=\"100%\" class=\"bg\"></a></li>");
+                    }
+                } else {
+                    for (var a in page) {
+                        var aa = page[a];
+                        $area.find(".activity ul").append("<li class=\"act\"><a href=\"http://sw.dgshare.cn/CMS/Detail?type=1&id=" + aa.Id + "\"><img src=\"" + (aa.ImgUrl ? aa.ImgUrl : "/content/images/bannar_img2.png") + "\" width=\"100%\" height=\"100%\" class=\"bg\"></a></li>");
+                    }
+                }
+                if (page.length < 1) {
+                    $area.find(".activity ul").append("<li class=\"act\"><a href=\"http://sw.dgshare.cn/CMS/Event\"><img src=\"/content/images/bannar_img2.png\" width=\"100%\" height=\"100%\" class=\"bg\"></a></li>");
+                }
+                $template.before($area);
+            });
+            $template.remove();
+
+            // 图片预加载后显示页面
+            var count = 10;
+            for (var x = 0; x < 10; x++) {
+                var img = new Image();
+                img.src = "http://swa.dgshare.cn/signin/img/pic/" + (x + 1) + ".jpg";
+                img.onload = function () {
+                    count--
+                    if (count == 0) {
+                        // 页面显示并绑定事件
+                        showFirstPage(function () {
+                            // 整体的拖拽
+                            swiper = new Swiper(".areas", {
+                                wrapperClass: "areaNav",
+                                slideClass: "area",
+                                initialSlide: 0,
+                                grabCursor: true,
+                                onSlideChangeEnd: function (swiper) {
+                                    $(".direct .text").text(swiper.activeIndex + 1);
+                                }
+                            });
+
+                            // 每页活动的拖拽
+                            $(".activity").each(function (i, obj) {
+                                var $this = $(this);
+                                var swp = new Swiper(".activity" + i, {
+                                    wrapperClass: "actNav",
+                                    slideClass: "act",
+                                    slidesPerView: 2,
+                                    initialSlide: 0,
+                                    centeredSlides: true,
+                                    spaceBetween: 20,
+                                });
+                                if ($(obj).find("li").length >= 3) {
+                                    swp.slideTo(1, 100);
+                                }
+                            });
+
+                            swiper.slideTo(GetQueryString("id"), 1000);
+
+                            $(".direct .prev").on("click", function () {
+                                swiper.slidePrev();
+                            });
+                            $(".direct .next").on("click", function () {
+                                swiper.slideNext();
+                            });
+                        });
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../Scripts/WeChat.js"></script>
+    <script>
+        WeChat("轻松玩转购物地，扫扫即可抽大奖", "http://sw.dgshare.cn/SignIn/img/eventIcon.jpg", "快来和我一起玩转购物地，一起抽取惊喜大奖吧！", "http://sw.dgshare.cn/Event/UserIndex");
+    </script>
+</body>
+</html>

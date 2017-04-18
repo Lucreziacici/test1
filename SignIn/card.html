@@ -1,0 +1,409 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>我的护照</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!--loading-->
+        <div class="alert" id="loading">
+            <div class="loading"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <!--主页面-->
+        <div class="page page1" id="card">
+            <div class="bg back">
+                <img src="http://swa.dgshare.cn/signin/img/card_bg.jpg" width="100%" height="100%" class="bg">
+            </div>
+            <div class="header">
+                <a href="#" class="rule_btn"><img src="http://swa.dgshare.cn/signin/img/rule_btn.png" height="45rem"></a>
+                <a href="#" class="share_btn"><img src="http://swa.dgshare.cn/signin/img/share_btn.png" height="45rem"></a>
+                <a href="#" class="scanQRCode"><img src="http://swa.dgshare.cn/signin/img/scan_btn.png" height="45rem"></a>
+            </div>
+            <div class="user">
+                <div class="id flex-row">
+                    <div class="grow">国家码：<span>CHN</span></div>
+                    <div class="grow idCode">护照编号：<span></span></div>
+                </div>
+                <div class="info flex-row">
+                    <div class="photo">
+                        <div></div>
+                    </div>
+                    <div class="uesr-info">
+                        <div class="name">昵称：<span></span></div>
+                        <div class="sex">性别：<span></span></div>
+                        <div class="addr">地区：<span></span></div>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav area-active flex-row">
+                <li>
+                    <a href="detail.html?id=0">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=1">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=2">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=3">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=4">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=5">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=6">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=7">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=8">
+                        <div class="view"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="detail.html?id=9">
+                        <div class="view"></div>
+                    </a>
+                </li>
+            </ul>
+            <div class="guagua">
+                <div class="prize">
+                    <div>
+                        <span>未中奖，再接再厉</span>
+                        <a href="#" class="get">领取奖品</a>
+                        <a href="#" class="restart">再刮一次</a>
+                    </div>
+                </div>
+                <canvas id="gua_convas" class="cover" width="100%" height="100%"></canvas>
+                <div class="text">
+                    <span class="no">签到已完成，刮开此图层</span>
+                    <span class="yes">还需签到 1 次，才能刮开此图层</span>
+                </div>
+            </div>
+            <div class="footer">
+                <a href="/CRM/MyChests"><img src="http://swa.dgshare.cn/signin/img/prize_btn.png" width="100%"></a>
+            </div>
+        </div>
+        <!--规则的提示框-->
+        <div class="alert" id="rule" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/rule_2.png" width="100%">
+                <a href="#" role="close" target="#rule" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--绑定手机的提示框-->
+        <div class="alert" id="bind" style="display: none;">
+            <div class="alert-inner">
+                <div class="bind-bg">
+                    <style>
+                        #bind input, #bind .btn {
+                            padding: .3em .8em;
+                        }
+                    </style>
+                    <div class="form-group">
+                        <input type="type" id="imgInput" placeholder="图形验证码" />
+                        <img src="/content/images/loading.jpg" width="30" height="30" id="imgCode" style="margin-left:.3em" />
+                    </div>
+                    <div class="form-group">
+                        <input type="type" id="tel" placeholder="请输入手机号" />
+                    </div>
+                    <div class="form-group">
+                        <input type="type" id="code" placeholder="请输入验证码" />
+                        <a href="#" class="btn flex-row center"><span id="getCode">获取验证码</span></a>
+                    </div>
+                    <div class="form-group">
+                        <a href="#"><img src="http://swa.dgshare.cn/signin/img/bind_btn.png" width="100%" id="bind_btn" /></a>
+                    </div>
+                </div>
+                <a href="#" role="close" target="#bind" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--绑定完成后提示收藏的提示框-->
+        <div class="alert" id="get" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/sign_alert2.png" width="100%" height="100%" style="margin-top: -30%" />
+                <a href="#" target="#get">
+                    <img src="http://swa.dgshare.cn/signin/img/ok_btn.png" width="60%" class="ok" target="#get" />
+                </a><!--按钮-好-->
+                <a href="" target="#get" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--提示转发的提示框-->
+        <div class="alert" id="share" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/share.png" width="100%" height="100%" style="margin-top: -30%" />
+                <a href="#" role="close" target="#share" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--<!--已完成签到的提示框
+        <div class="alert" id="hasSign" style="display: none;">
+        <div class="alert-inner">
+        <img src="img/ok_alert.png" width="100%" height="100%" style="margin-top: -30%"/>
+        <img src="img/ok_btn.png" width="60%" class="ok" role="close" target="#hasSign"/><!--按钮-好
+        <a href="#" role="close" target="#hasSign" class="close">
+            <img src="img/close_btn.png" width="100%" height="100%" class="bg">
+        </a>
+        </div>
+        </div>-->
+        <!--已获得星星的提示框-->
+        <div class="alert" id="getStar" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/get_alert.png" width="100%" height="100%" style="margin-top: -30%" />
+                <img src="http://swa.dgshare.cn/signin/img/nore_scan_btn.png" width="30%" class="more-scan-btn scanQRCode" /><!--按钮-继续扫-->
+                <a href="/CRM/MyChests"><img src="http://swa.dgshare.cn/signin/img/view_star_btn.png" width="30%" class="view-star-btn" /></a><!--按钮-看星星-->
+                <a href="#" role="close" target="#getStar" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+        <!--星星已达上限的提示框-->
+        <div class="alert" id="enough" style="display: none;">
+            <div class="alert-inner">
+                <img src="http://swa.dgshare.cn/signin/img/up_alert.png" width="100%" height="100%" style="margin-top: -30%" />
+                <img src="http://swa.dgshare.cn/signin/img/ok_btn.png" width="60%" class="ok" role="close" target="#enough" /><!--按钮-好-->
+                <a href="#" role="close" target="#enough" class="close">
+                    <img src="http://swa.dgshare.cn/signin/img/close_btn.png" width="100%" height="100%" class="bg">
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="http://swa.dgshare.cn/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="http://swa.dgshare.cn/Scripts/prefixfree.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        //$(".page").hide(0);
+        var howMuch = 0; // 记录可以刮几次
+        $.post("/Event/GetCustomerSignInfo", function (r) {
+            //console.log(r);
+            // 会员名称
+            var name = r.Customer.Nickname || r.Customer.MobilePhone || "匿名用户";
+            $(".user .name span").text(name);
+            // 会员编号
+            var em = "34875092";
+            var id = r.Customer.Id + "";
+            var exg = eval("/\\d{" + id.length + "}$/");
+            em = em.replace(exg, "") + r.Customer.Id;
+            $(".user .idCode span").html("<span>" + em.substr(0, 2) + "</span><span>" + em.substr(2, 3) + "</span><span>" + em.substr(5, 3) + "</span>");
+            // 会员性别
+            $(".user .sex span").text(r.Customer.Gender == 0 ? "未知" : (r.Customer.Gender == 1 ? "男" : "女"));
+            // 会员地址
+            $(".user .addr span").text(r.Customer.Province || "未知");
+            // 会员头像
+            var url = r.Customer.HeadImgUrl ? r.Customer.HeadImgUrl : "http://swa.dgshare.cn/signin/img/default_headPicture.png";
+            $(".user .photo div").css("background", "url(" + url + ") center / cover no-repeat");
+            $(".page1").fadeIn("fast");
+
+            // 点亮地区
+            $.each(r.SignInfo, function (a, s) {
+                if (s == true) {
+                    howMuch += 1;
+                    $(".area-active li").eq(a).addClass("active");
+                }
+                if (howMuch == 10) {
+                    $(".guagua .yes").text("奖抽完咯，继续签到领星星吧~");
+                }
+            });
+
+            // 计算可以刮几次
+            if (r.LotteryTimes > 0) {
+                $(".guagua").addClass("ok");
+                guaguaEvent(true);
+            }
+
+            // 检测是否需要绑定手机
+            if (!r.Customer.MobilePhoneChecked) {
+                $(".prize .get").on("touchstart", function () {
+                    $("#bind").fadeIn();
+                    bindPhone();
+                    return false;
+                });
+                //} else if (!r.Customer.Subscribe) {
+                //    $(".prize .get").on("touchstart", function () {
+                //        $("#get").fadeIn().find("a").off().on("click", function () {
+                //            $("#get").fadeOut();
+                //            window.location.href = "/CRM/MyChests";
+                //        });
+                //        return false;
+                //    });
+            } else {
+                $(".prize .get").on("touchstart", function () {
+                    //window.location.href = "/CRM/MyChests";
+                    $("#get").fadeIn();
+                    weiXinCard();
+                    return false;
+                });
+            }
+
+            // loading 消失，显示第一页
+            showFirstPage();
+        });
+
+        // 初始化刮刮乐部分
+        guaguaEvent(false);
+
+        // 再刮一次按钮
+        $(".restart").on("touchstart", function () {
+            window.location.href = "";
+            return false;
+        });
+
+
+        imgCode();
+        $("#imgCode").on("click", imgCode);
+        function imgCode() {
+            $("#imgCode").css({
+                "width": "30px",
+                "margin-left": "30px",
+            }).attr("src", "/content/images/loading.jpg");
+            $.post("/crm/checkcode", function (r) {
+                $("#imgCode").css({
+                    "width": "60px",
+                    "margin-left": "0px",
+                }).attr("src", "data:image/png;base64," + r);
+            });
+        }
+
+        // 开始刮，重置奖品
+        var PrizePostStart = false;
+        function startGua() {
+            // loading
+            $(".prize span").text("请稍后...");
+            $(".get, .restart").hide(0);
+            if (PrizePostStart) return;  // 限定只请求一次
+            PrizePostStart = true;
+            $.post("/Event/LotteryBehavior", { EventId: 1 }, function (r) {
+                //console.log(r);
+                if (r.ErrorMessage && r.ErrorCode != 909) {
+                    var sure = confirm(r.ErrorMessage);
+                    if (sure || !sure) {
+                        window.location.href = "";
+                    }
+                    return;
+                } else if (r.ErrorCode == 909) {
+                    $(".prize span").text("未中奖，再接再厉");
+                    $(".restart").show(0);
+                }
+                // 显示中奖与否
+                if (r.ErrorCode == 0) {
+                    $(".prize span").text("恭喜您中奖了");
+                    $(".restart").show(0);
+                    $(".get").show(0);
+                }
+            });
+        }
+
+        // 刮完
+        function afterGua() {
+            $(".guagua.ok").off();
+        }
+
+        // 绑定手机完成后
+        function afterBindPhone() {
+            $("#bind").fadeOut();
+            $("#get").fadeIn();
+            weiXinCard();
+            
+        }
+
+        // 点亮地区
+        function lightAreaIcon(id) {
+
+        }
+
+        // 可以刮奖
+        function resetGuaguale() {
+            guaguaEvent(true);
+            $(".guagua").addClass("ok");
+        }
+
+        // 去往微信卡券
+        function weiXinCard() {
+            $.get("/wx/WeixinConfig", { Url: window.location.href }, function (r) {
+                wx.config(r);
+            });
+            wx.ready(function () {
+                var cardId;
+                var Enx;
+                $.get("/wx/JSCardConfig", function (r) {
+                    console.log(r);
+                    cardId = r.cardId;
+                    Enx = r.cardExt;
+                });
+                //添加卡券
+                $("#get .ok").off().on("click", function () {
+                    $.post("/wx/GetCard", function (r) {
+                        console.log(r);
+                        if (r.ErrorMessage) {
+                            alert(r.ErrorMessage);
+                            window.location.href = "";
+                        } else if (r.Statue) {
+                            wx.addCard({
+                                cardList: [{ cardId: cardId, cardExt: Enx }],
+                                success: function(res) {
+                                    alert('已添加卡券');
+                                    window.location.href = "";
+                                }
+                            });
+                        } else {
+                            //alert("您已领取过卡券");
+                            //$("#get").fadeOut();
+                            window.location.href = "";
+                        }
+                    });
+                });
+            });
+            wx.error(function (res) {
+                alert(res);
+            });
+        }
+    </script>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../Scripts/WeChat.js"></script>
+    <script>
+        WeChat("轻松玩转购物地，扫扫即可抽大奖", "http://sw.dgshare.cn/SignIn/img/eventIcon.jpg", "快来和我一起玩转购物地，一起抽取惊喜大奖吧！", "http://sw.dgshare.cn/Event/UserIndex");
+    </script>
+</body>
+</html>
